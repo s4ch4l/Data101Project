@@ -1,0 +1,56 @@
+# SACHAL L DENNEY
+
+# Retrieving, arranging, and visualizing data from the gapminder data set
+
+
+# Install packages
+
+install.packages("tidyverse")
+install.packages("dplyr")
+install.packages("gapminder")
+install.packages("ggplot2")
+
+
+# Load libraries into session
+
+library(tidyverse)
+library(dplyr)
+library(gapminder)
+library(ggplot2)
+
+
+
+# Creating filtered versions of the data that will be used in visualizations
+
+GM_2007 <- gapminder %>% filter(year == 2007)
+GM_Japan <- gapminder %>% filter(country == "Japan")
+
+
+# Sort updatedGM by population, return 50 rows
+
+gmByPop <- GM_2007 %>% arrange(desc(pop))
+
+print(gmByPop, n = 50)
+
+
+
+# Sort by life expectancy, return 50 rows
+
+gmByLifeExp <- GM_2007 %>% arrange(desc(lifeExp))
+
+print(gmByLifeExp, n = 50)
+
+
+# Visualizing continents with the highest and lowest life expectancy
+
+ggplot(GM_2007, aes(x = continent, y = lifeExp, color = continent)) + 
+  geom_point()
+
+
+
+# Visualizing the history of life expectancy rates in Japan
+
+ggplot(GM_Japan, aes(x = year, y = lifeExp)) +
+  geom_line(color = "darkred", size = 2) +
+  ggtitle("")
+  xlab(" ")
